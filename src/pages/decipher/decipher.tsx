@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Col, Container, Row } from 'simple-display';
 import UploadIcon from '../../assets/icons/uploadIcon';
@@ -8,17 +8,14 @@ import Title from '../../components/title/title';
 import Analisys from './steps/analisys';
 import Knows from './steps/knows';
 
-// enum Steps {
-//   SemArquivo = 0,
-//   AnaliseTamanho = 1,
-//   AnaliseChave = 2,
-//   TudoPronto = 3,
-// }
-
 export default function Decipher() {
   const navigate = useNavigate();
   const [text, setText] = useState<string>('');
   const [knows, setKnows] = useState<boolean>();
+
+  useEffect(() => {
+    setKnows(undefined);
+  }, [text]);
 
   return (
     <Container>
