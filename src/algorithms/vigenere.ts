@@ -46,6 +46,7 @@ export const vigenere = async (
       // console.log('distance: ', distance);
       // console.log('provavel: ', );
 
+      console.log('Size', size);
       console.log(
         'max:',
         max[0],

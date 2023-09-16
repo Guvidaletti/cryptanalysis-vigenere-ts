@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useMemo, useState } from 'react';
 import { Col, Row } from 'simple-display';
 import { FriedmanCalcSizes } from '../../../algorithms/friedman';
 import Loader from '../../../assets/icons/loader';
@@ -64,6 +64,17 @@ export default function Analisys({ text }: { text: string }) {
       worker.terminate();
     };
   }, [language, sizes, text]);
+
+  const believedSize = useMemo(() => {
+    if (!sizes) return undefined;
+
+    return [...sizes].sort((a, b) => {
+      const f = a[language!] ?? 0;
+      const s = b[language!] ?? 0;
+
+      return f - s;
+    })[0].size;
+  }, [language, sizes]);
 
   return text ? (
     <Row>
@@ -197,21 +208,14 @@ export default function Analisys({ text }: { text: string }) {
               );
             })}
           </Col>
-          <Col>
-            <small>
+          {language && (
+            <Col>
               <b>
-                Acreditamos que o tamanho seja:{' '}
-                {
-                  [...sizes].sort((a, b) => {
-                    const f = a[language!] ?? 0;
-                    const s = b[language!] ?? 0;
-
-                    return f - s;
-                  })[0].size
-                }
+                <small>Acreditamos que o tamanho seja: </small>
+                {believedSize}
               </b>
-            </small>
-          </Col>
+            </Col>
+          )}
         </Fragment>
       )}
       {loadingPK && <Loader />}
@@ -232,7 +236,15 @@ export default function Analisys({ text }: { text: string }) {
               <tbody>
                 {PK?.map((probableKey) => {
                   return (
-                    <tr key={probableKey.size}>
+                    <tr
+                      key={probableKey.size}
+                      style={{
+                        backgroundColor:
+                          probableKey.size === believedSize
+                            ? '#9fff9f'
+                            : undefined,
+                      }}
+                    >
                       <td>{probableKey.size}</td>
                       <td>{probableKey.k}</td>
                       <td>
