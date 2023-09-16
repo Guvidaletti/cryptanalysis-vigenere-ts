@@ -1,0 +1,10 @@
+/build/*
+/node_modules/*
+/coverage/*
+**/*.scss
+**/*.css
+**/*.html
+**/*.txt
+**/*.jpg
+**/*.png
+**/*.gif

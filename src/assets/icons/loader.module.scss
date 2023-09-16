@@ -1,0 +1,41 @@
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4px auto;
+  gap: 8px;
+
+  & > div {
+    width: 6px;
+    height: 6px;
+    background-color: #888888;
+    border-radius: 20px;
+    animation: growAndDark 1.5s infinite linear;
+    transform-origin: center center;
+
+    &:nth-child(1) {
+      animation-delay: 0s;
+    }
+    &:nth-child(2) {
+      animation-delay: 0.25s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.5s;
+    }
+  }
+}
+
+@keyframes growAndDark {
+  0% {
+    background-color: #888888;
+    transform: scale(1);
+  }
+  50% {
+    background-color: #555555;
+    transform: scale(1.5);
+  }
+  100% {
+    background-color: #888888;
+    transform: scale(1);
+  }
+}

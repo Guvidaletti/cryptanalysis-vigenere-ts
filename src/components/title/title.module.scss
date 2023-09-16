@@ -1,0 +1,26 @@
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 22px;
+  font-weight: 500;
+  gap: 4px;
+
+  button {
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      height: 20px;
+    }
+
+    &:focus-within {
+      outline: 2px solid #000000;
+    }
+  }
+}

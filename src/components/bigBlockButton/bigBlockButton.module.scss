@@ -1,0 +1,38 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 100%;
+  cursor: pointer;
+
+  background-color: transparent;
+  border-radius: 8px;
+  border: 2px solid #000000;
+
+  gap: 12px;
+  padding: 12px;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+
+  &:disabled {
+    pointer-events: none;
+  }
+
+  &:hover {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
